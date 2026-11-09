@@ -1,0 +1,20 @@
+{
+"courses": [
+{
+"name": "Web Development",
+"category": "Technology",
+"duration": "3 Months",
+"fee": "Rs. 23,000",
+"schedule": "Weekdays",
+"description": "Learn HTML, CSS, JavaScript and build modern websites."
+},
+{
+"name": "Graphic Design",
+"category": "Design",
+"duration": "3 Months",
+"fee": "Rs. 20,000",
+"schedule": "Weekend",
+"description": "Learn Photoshop, Illustrator and creative designing."
+}
+]
+}

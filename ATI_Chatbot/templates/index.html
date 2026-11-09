@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATI Gampaha AI Assistant</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f1f5f9;
+    color: #1e293b;
+    min-height: 100vh;
+}
+
+/* HEADER */
+.main-header {
+    min-height: 70px;
+    background: linear-gradient(135deg, #071a3d, #123b7a);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 30px;
+}
+
+.header-left, .header-center, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-box {
+    width: 45px;
+    height: 45px;
+    background: #fbbf24;
+    color: #111827;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
+.header-left h1 { font-size: 18px; }
+.header-left p, .header-center p {
+    font-size: 12px;
+    color: #bfdbfe;
+}
+
+.bot-avatar-header {
+    width: 42px;
+    height: 42px;
+    background: #1e40af;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.header-center h2 { font-size: 16px; }
+
+.home-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* MAIN LAYOUT */
+.main-container {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr) 260px;
+    gap: 18px;
+    padding: 20px;
+    max-width: 1500px;
+    margin: auto;
+}
+
+.left-sidebar, .right-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.section-title, .course-card, .why-choose-box,
+.quick-box, .voice-box {
+    background: white;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
+}
+
+.section-title-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.section-title p {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 5px;
+}
+
+.course-card {
+    border: 1px solid #e2e8f0;
+    transition: .3s;
+}
+
+.course-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.1);
+}
+
+.course-header-flex {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.course-icon-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    background: #2563eb;
+}
+
+.design-card .course-icon-box { background: #059669; }
+
+.badge {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.design-card .badge {
+    background: #d1fae5;
+    color: #059669;
+}
+
+.course-card h4 {
+    font-size: 15px;
+    margin-top: 4px;
+}
+
+.course-card p {
+    font-size: 12px;
+    color: #64748b;
+    margin: 12px 0;
+    line-height: 1.6;
+}
+
+.course-info-list {
+    list-style: none;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.course-info-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.course-info-list i { color: #2563eb; }
+
+.view-details-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 8px;
+    border-radius: 8px;
+    background: white;
+    border: 1px solid #2563eb;
+    color: #2563eb;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.view-details-btn:hover {
+    background: #2563eb;
+    color: white;
+}
+
+.why-choose-box h4 {
+    font-size: 14px;
+    color: #2563eb;
+    margin-bottom: 12px;
+}
+
+.why-choose-box ul {
+    list-style: none;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.why-choose-box i {
+    color: #22c55e;
+    margin-right: 6px;
+}
+
+/* CHAT SECTION */
+.chat-section {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.chat-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.assistant-info {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.bot-icon-small {
+    width: 40px;
+    height: 40px;
+    background: #dbeafe;
+    color: #2563eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.assistant-info h3 { font-size: 15px; }
+
+.assistant-info p {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.voice-toggle {
+    border: none;
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 7px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.online-badge {
+    display: inline-block;
+    background: #dcfce7;
+    color: #16a34a;
+    padding: 7px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    margin-left: 5px;
+}
+
+/* ROBOT BANNER - OUTSIDE THE SCROLLABLE CHAT */
+
+.welcome-banner {
+    width: 100%;
+    height: 200px;
+    min-height: 200px;
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 12px;
+    background: radial-gradient(ellipse at center, #e0f7ff 0%, #eef2ff 45%, #ffffff 100%);
+    perspective: 800px;
+}
+
+/* ROBOT ROTATION */
+
+.ai-robot {
+    position: relative;
+    width: 260px;
+    height: 200px;
+    min-width: 260px;
+    flex-shrink: 0;
+    transform-origin: center center;
+    transform-style: preserve-3d;
+    animation: robotFullRotate 5s linear infinite;
+    visibility: visible;
+    opacity: 1;
+    filter: drop-shadow(0 8px 10px rgba(20,70,120,.18));
+}
+
+@keyframes robotFullRotate {
+    from {
+        transform: perspective(800px) rotateY(0deg) scale(.85);
+    }
+    to {
+        transform: perspective(800px) rotateY(360deg) scale(.85);
+    }
+}
+
+/* ROBOT HEAD */
+
+.robot-head {
+    width: 140px;
+    height: 110px;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #ffffff 0%, #e5edf6 18%, #a8bad0 42%, #f9fcff 62%, #8ea3bd 100%);
+    border-radius: 38px;
+    border: 3px solid #9aafc8;
+    position: absolute;
+    left: 60px;
+    top: 5px;
+    box-shadow:
+        inset 4px 5px 8px rgba(255,255,255,.95),
+        inset -7px -8px 12px rgba(53,76,108,.28),
+        0 0 0 3px rgba(215,235,255,.7),
+        0 0 22px rgba(0,174,255,.22);
+    z-index: 3;
+}
+
+.robot-head::before {
+    content: "";
+    position: absolute;
+    width: 48px;
+    height: 8px;
+    top: 8px;
+    left: 18px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.95);
+    filter: blur(3px);
+}
+
+.robot-head::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 27px;
+    right: -8px;
+    top: 35px;
+    border-radius: 0 6px 6px 0;
+    background: linear-gradient(#e8f5ff, #7188a5);
+    border: 1px solid #91a8c2;
+}
+
+/* ROBOT EYES */
+
+.robot-eye {
+    width: 21px;
+    height: 25px;
+    background: linear-gradient(180deg, #e0ffff 0%, #55edff 35%, #00a9ff 75%, #1764dc 100%);
+    border: 2px solid #e6fcff;
+    border-radius: 9px;
+    position: absolute;
+    top: 35px;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px #fff, 0 0 12px #00cfff, 0 0 22px rgba(0,174,255,.9);
+    animation: eyeGlow 2s ease-in-out infinite alternate;
+}
+
+.robot-eye.left { left: 27px; }
+.robot-eye.right { right: 27px; }
+
+@keyframes eyeGlow {
+    from {
+        box-shadow: 0 0 5px #fff, 0 0 10px #00cfff, 0 0 16px rgba(0,174,255,.7);
+    }
+    to {
+        box-shadow: 0 0 7px #fff, 0 0 15px #00cfff, 0 0 25px rgba(0,174,255,1);
+    }
+}
+
+/* ROBOT MOUTH */
+
+.robot-mouth {
+    width: 42px;
+    height: 7px;
+    background: linear-gradient(90deg, #1269b5, #54edff, #1269b5);
+    border: 1px solid #c7faff;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 19px;
+    left: 46px;
+    box-shadow: 0 0 9px rgba(0,204,255,.8);
+    transition: height .12s ease;
+}
+
+/* ROBOT BODY */
+
+.robot-body {
+    width: 110px;
+    height: 65px;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #ffffff 0%, #dce7f3 20%, #8da4bf 46%, #eef5fc 65%, #7088a5 100%);
+    border: 2px solid #a7bad1;
+    border-radius: 22px 22px 27px 27px;
+    position: absolute;
+    top: 125px;
+    left: 75px;
+    box-shadow:
+        inset 4px 4px 8px rgba(255,255,255,.95),
+        inset -6px -6px 10px rgba(44,65,96,.3),
+        0 5px 12px rgba(24,55,90,.18);
+    z-index: 2;
+}
+
+.robot-body::before {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 12px;
+    left: 41px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #eaffff 0%, #38eaff 35%, #1684ff 70%, #1646a5 100%);
+    border: 2px solid #d8faff;
+    box-shadow: 0 0 8px #00d9ff, 0 0 16px rgba(0,180,255,.8);
+}
+
+.robot-body::after {
+    content: "";
+    position: absolute;
+    width: 42px;
+    height: 3px;
+    bottom: 8px;
+    left: 32px;
+    border-radius: 4px;
+    background: #647f9e;
+    box-shadow: 0 5px 0 #b7c9dd;
+}
+
+/* ROBOT HANDS */
+
+.robot-hand {
+    width: 23px;
+    height: 53px;
+    box-sizing: border-box;
+    background: linear-gradient(90deg, #7187a2 0%, #ffffff 30%, #d6e1ed 65%, #8399b2 100%);
+    border: 2px solid #a6bad1;
+    border-radius: 15px;
+    position: absolute;
+    top: 130px;
+    box-shadow:
+        inset 3px 2px 4px rgba(255,255,255,.9),
+        inset -3px -2px 5px rgba(35,55,80,.25),
+        0 3px 7px rgba(0,0,0,.15);
+    z-index: 1;
+}
+
+.left-hand {
+    left: 35px;
+    transform-origin: top center;
+    animation: waveLeft 1.8s ease-in-out infinite;
+}
+
+.right-hand {
+    right: 35px;
+    transform-origin: top center;
+    animation: waveRight 1.8s ease-in-out infinite;
+}
+
+@keyframes waveLeft {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(22deg); }
+}
+
+@keyframes waveRight {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-22deg); }
+}
+
+/* SPEAKING ANIMATION */
+
+@keyframes speak {
+    0%, 100% {
+        height: 7px;
+        transform: scaleX(1);
+    }
+    50% {
+        height: 18px;
+        transform: scaleX(.85);
+    }
+}
+
+body.speaking .robot-mouth {
+    animation: speak .3s infinite;
+    background: linear-gradient(180deg, #e8ffff, #29dfff, #0874d1);
+    box-shadow: 0 0 10px #00d9ff, 0 0 18px rgba(0,174,255,.9);
+}
+
+/* CHAT BODY - MESSAGES SCROLL HERE ONLY */
+
+.chat-body {
+    padding: 20px;
+    min-height: 350px;
+    height: 520px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* MESSAGES */
+
+.message {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    max-width: 90%;
+}
+
+.message.user {
+    align-self: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.message.bot { align-self: flex-start; }
+
+.bubble {
+    padding: 12px 15px;
+    border-radius: 15px;
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+.user .bubble {
+    background: #2563eb;
+    color: white;
+    border-bottom-right-radius: 3px;
+}
+
+.bot .bubble {
+    background: #f1f5f9;
+    color: #1e293b;
+    border-bottom-left-radius: 3px;
+}
+
+.message span {
+    font-size: 10px;
+    color: #94a3b8;
+}
+
+.bot-circle {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #dbeafe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2563eb;
+}
+
+/* INPUT AREA */
+
+.chat-footer {
+    padding: 15px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #f8fafc;
+    padding: 8px;
+    border-radius: 12px;
+}
+
+.input-box input {
+    flex: 1;
+    width: 0;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.input-box button {
+    border: none;
+    background: none;
+    padding: 10px;
+    cursor: pointer;
+    color: #2563eb;
+}
+
+.input-box .send {
+    background: #2563eb;
+    color: white;
+    border-radius: 10px;
+}
+
+.chat-footer p {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #64748b;
+}
+
+/* RIGHT SIDEBAR */
+
+.quick-box h3 {
+    font-size: 15px;
+    color: #2563eb;
+    margin-bottom: 12px;
+}
+
+.quick-box button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 8px;
+    border: none;
+    background: #f8fafc;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 12px;
+}
+
+.quick-box button:hover { background: #dbeafe; }
+
+.voice-box { text-align: center; }
+
+.voice-box h3 {
+    font-size: 15px;
+    color: #2563eb;
+}
+
+.voice-box p {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 8px;
+}
+
+.mic-btn {
+    width: 60px;
+    height: 60px;
+    background: #2563eb;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto;
+    font-size: 25px;
+    border: none;
+    cursor: pointer;
+}
+
+.mic-btn:hover, .mic-btn.listening { background: #dc2626; }
+
+.waves span {
+    display: inline-block;
+    width: 4px;
+    height: 15px;
+    background: #2563eb;
+    margin: 3px;
+    animation: wave 1s infinite;
+}
+
+.waves span:nth-child(2) { animation-delay: .1s; }
+.waves span:nth-child(3) { animation-delay: .2s; }
+.waves span:nth-child(4) { animation-delay: .3s; }
+
+@keyframes wave {
+    50% { height: 30px; }
+}
+
+/* FOOTER */
+
+.footer {
+    background: #071a3d;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 25px;
+    font-size: 12px;
+}
+
+.footer h4 { margin-bottom: 8px; }
+
+.footer p {
+    color: #cbd5e1;
+    line-height: 1.8;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+    .main-container {
+        grid-template-columns: 240px minmax(0, 1fr);
+    }
+
+    .right-sidebar { display: none; }
+}
+
+@media (max-width: 750px) {
+    .main-header { padding: 12px 15px; }
+    .header-center { display: none; }
+
+    .main-container {
+        grid-template-columns: 1fr;
+        padding: 12px;
+    }
+
+    .left-sidebar { display: none; }
+
+    .chat-body {
+        height: 450px;
+        padding: 12px;
+    }
+
+    .chat-header { padding: 12px; }
+    .online-badge { display: none; }
+
+    .footer {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20px;
+    }
+
+    .message { max-width: 95%; }
+    .welcome-banner { height: 180px; min-height: 180px; }
+}
+
+@media (max-width: 400px) {
+    .assistant-info { gap: 6px; }
+    .assistant-info h3 { font-size: 13px; }
+    .voice-toggle { padding: 7px; }
+
+    .input-box {
+        gap: 0;
+        padding: 4px;
+    }
+
+    .input-box button { padding: 8px; }
+    .footer { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="main-header">
+    <div class="header-left">
+        <div class="logo-box">ATI</div>
+        <div>
+            <h1>ATI Gampaha</h1>
+            <p>Skills For Tomorrow</p>
+        </div>
+    </div>
+
+    <div class="header-center">
+        <div class="bot-avatar-header">
+            <i class="fa-solid fa-robot"></i>
+        </div>
+        <div>
+            <h2>Short Term Courses Chatbot</h2>
+            <p>Your AI Assistant for Courses</p>
+        </div>
+    </div>
+
+    <div class="header-right">
+        <button class="home-btn" type="button" onclick="window.location.href='/'">
+            <i class="fa-solid fa-house"></i> Home
+        </button>
+    </div>
+</header>
+
+<div class="main-container">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="left-sidebar">
+
+        <div class="section-title">
+            <div class="section-title-top">
+                <i class="fa-solid fa-book-open"></i>
+                Our Short Term Courses
+            </div>
+            <p>Explore popular courses available at ATI Gampaha</p>
+        </div>
+
+        <div class="course-card tech-card">
+            <div class="course-header-flex">
+                <div class="course-icon-box">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <div>
+                    <span class="badge">TECHNOLOGY</span>
+                    <h4>Web Development</h4>
+                </div>
+            </div>
+
+            <p>Learn HTML, CSS, JavaScript and build modern websites.</p>
+
+            <ul class="course-info-list">
+                <li><span><i class="fa-regular fa-clock"></i> Duration</span><b>3 Months</b></li>
+                <li><span><i class="fa-solid fa-tag"></i> Fee</span><b>Rs. 23,000</b></li>
+                <li><span><i class="fa-regular fa-calendar"></i> Schedule</span><b>Weekdays</b></li>
+            </ul>
+
+            <button class="view-details-btn" type="button" data-question="Tell me about Web Development">
+                View Details →
+            </button>
+        </div>
+
+        <div class="course-card design-card">
+            <div class="course-header-flex">
+                <div class="course-icon-box">
+                    <i class="fa-solid fa-pen-nib"></i>
+                </div>
+                <div>
+                    <span class="badge">DESIGN</span>
+                    <h4>Graphic Design</h4>
+                </div>
+            </div>
+
+            <p>Learn Photoshop, Illustrator and creative designing.</p>
+
+            <ul class="course-info-list">
+                <li><span><i class="fa-regular fa-clock"></i> Duration</span><b>3 Months</b></li>
+                <li><span><i class="fa-solid fa-tag"></i> Fee</span><b>Rs. 20,000</b></li>
+                <li><span><i class="fa-regular fa-calendar"></i> Schedule</span><b>Weekend</b></li>
+            </ul>
+
+            <button class="view-details-btn" type="button" data-question="Tell me about Graphic Design">
+                View Details →
+            </button>
+        </div>
+
+        <div class="why-choose-box">
+            <h4><i class="fa-solid fa-star"></i> Why Choose ATI?</h4>
+            <ul>
+                <li><i class="fa-solid fa-check"></i> Industry relevant courses</li>
+                <li><i class="fa-solid fa-check"></i> Practical learning</li>
+                <li><i class="fa-solid fa-check"></i> Experienced instructors</li>
+            </ul>
+        </div>
+
+    </aside>
+
+    <!-- CHAT SECTION -->
+    <section class="chat-section">
+
+        <div class="chat-header">
+            <div class="assistant-info">
+                <div class="bot-icon-small">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div>
+                    <h3>AI Assistant</h3>
+                    <p>Ask anything about courses</p>
+                </div>
+            </div>
+
+            <div>
+                <button class="voice-toggle" id="voice-toggle" type="button">
+                    <i class="fa-solid fa-volume-high"></i> Voice On
+                </button>
+                <span class="online-badge">● Online</span>
+            </div>
+        </div>
+
+        <!-- ROBOT IS OUTSIDE CHAT BODY SO IT STAYS VISIBLE -->
+        <div class="welcome-banner" id="welcome-banner">
+            <div class="ai-robot">
+                <div class="robot-head">
+                    <div class="robot-eye left"></div>
+                    <div class="robot-eye right"></div>
+                    <div class="robot-mouth"></div>
+                </div>
+                <div class="robot-body"></div>
+                <div class="robot-hand left-hand"></div>
+                <div class="robot-hand right-hand"></div>
+            </div>
+        </div>
+
+        <!-- ONLY CHAT MESSAGES SCROLL -->
+        <div class="chat-body" id="chat-body">
+
+            <div class="message bot">
+                <div class="bot-circle"><i class="fa-solid fa-robot"></i></div>
+                <div>
+                    <div class="bubble">
+                        Hello! Welcome to ATI Gampaha. I can help you with course information, fees, duration, schedules, and applications. What would you like to know?
+                    </div>
+                    <span>AI Assistant</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="chat-footer">
+            <div class="input-box">
+                <input type="text" id="user-input" placeholder="Type your question..." autocomplete="off">
+
+                <button type="button" id="mic-button" title="Speak">
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+
+                <button type="button" class="send" id="send-button">
+                    Send <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+
+            <p id="status-message">
+                <i class="fa-solid fa-circle-info"></i>
+                Type a question or use the microphone.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="right-sidebar">
+
+        <div class="quick-box">
+            <h3><i class="fa-solid fa-bolt"></i> Quick Questions</h3>
+
+            <button type="button" data-question="What courses do you offer?">🎓 About Courses</button>
+            <button type="button" data-question="What are the course fees?">💰 Course Fees</button>
+            <button type="button" data-question="What are the course schedules?">📅 Course Schedule</button>
+            <button type="button" data-question="How can I apply for a course?">📝 How to Apply</button>
+            <button type="button" data-question="What are the career opportunities?">💼 Career Opportunities</button>
+            <button type="button" data-question="What is the contact information?">☎️ Contact Information</button>
+        </div>
+
+        <div class="voice-box">
+            <h3>You can also speak!</h3>
+            <p>Click the microphone and ask your question.</p>
+
+            <button class="mic-btn" id="side-mic-button" type="button" title="Start voice input">
+                <i class="fa-solid fa-microphone"></i>
+            </button>
+
+            <div class="waves">
+                <span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+
+    </aside>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div>
+        <h4>📍 ATI Gampaha</h4>
+        <p>Minuwangoda Road, Gampaha</p>
+    </div>
+
+    <div>
+        <h4>⏰ Available</h4>
+        <p>Monday - Friday<br>8.00 AM - 5.00 PM</p>
+    </div>
+
+    <div>
+        <h4>☎️ Contact</h4>
+        <p>033 222 2233<br>info@atigampaha.lk</p>
+    </div>
+
+    <div>
+        <h4>Follow Us</h4>
+        <p>Facebook | YouTube | Instagram</p>
+    </div>
+</footer>
+
+<script>
+const userInput = document.getElementById("user-input");
+const sendButton = document.getElementById("send-button");
+const chatBody = document.getElementById("chat-body");
+const micButton = document.getElementById("mic-button");
+const sideMicButton = document.getElementById("side-mic-button");
+const voiceToggle = document.getElementById("voice-toggle");
+const statusMessage = document.getElementById("status-message");
+
+let voiceEnabled = true;
+let recognition = null;
+
+function getCurrentTime() {
+    return new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+}
+
+function addMessage(text, sender) {
+    const message = document.createElement("div");
+    message.className = "message " + sender;
+
+    if (sender === "bot") {
+        const icon = document.createElement("div");
+        icon.className = "bot-circle";
+        icon.innerHTML = '<i class="fa-solid fa-robot"></i>';
+        message.appendChild(icon);
+    }
+
+    const content = document.createElement("div");
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.textContent = text;
+
+    const time = document.createElement("span");
+    time.textContent = getCurrentTime();
+
+    content.appendChild(bubble);
+    content.appendChild(time);
+    message.appendChild(content);
+    chatBody.appendChild(message);
+
+    chatBody.scrollTop = chatBody.scrollHeight;
+    return bubble;
+}
+
+function speakReply(text) {
+    if (!voiceEnabled || !("speechSynthesis" in window)) {
+        return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    const speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "en-US";
+    speech.rate = 1;
+
+    speech.onstart = function() {
+        document.body.classList.add("speaking");
+    };
+
+    speech.onend = function() {
+        document.body.classList.remove("speaking");
+    };
+
+    speech.onerror = function() {
+        document.body.classList.remove("speaking");
+    };
+
+    window.speechSynthesis.speak(speech);
+}
+
+async function sendMessage(customMessage = null) {
+    const message = (customMessage ?? userInput.value).trim();
+
+    if (!message) {
+        statusMessage.textContent = "Please type a question first.";
+        userInput.focus();
+        return;
+    }
+
+    addMessage(message, "user");
+    userInput.value = "";
+    sendButton.disabled = true;
+    statusMessage.textContent = "AI Assistant is typing...";
+
+    const loadingBubble = addMessage("Please wait...", "bot");
+
+    try {
+        const response = await fetch("/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: message
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.reply || "The server returned an error.");
+        }
+
+        const reply = data.reply || "Sorry, I could not generate an answer.";
+        loadingBubble.textContent = reply;
+
+        statusMessage.textContent = "Response received.";
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        speakReply(reply);
+
+    } catch (error) {
+        loadingBubble.textContent =
+            "I could not connect to the chatbot server. Please make sure the Flask application is running.";
+
+        statusMessage.textContent = "Connection failed. Check the Flask server.";
+        console.error("Chatbot error:", error);
+
+    } finally {
+        sendButton.disabled = false;
+        userInput.focus();
+    }
+}
+
+sendButton.addEventListener("click", function() {
+    sendMessage();
+});
+
+userInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+    }
+});
+
+document.querySelectorAll("[data-question]").forEach(function(button) {
+    button.addEventListener("click", function() {
+        sendMessage(button.dataset.question);
+    });
+});
+
+voiceToggle.addEventListener("click", function() {
+    voiceEnabled = !voiceEnabled;
+
+    if (voiceEnabled) {
+        voiceToggle.innerHTML =
+            '<i class="fa-solid fa-volume-high"></i> Voice On';
+
+        statusMessage.textContent = "Voice replies enabled.";
+    } else {
+        voiceToggle.innerHTML =
+            '<i class="fa-solid fa-volume-xmark"></i> Voice Off';
+
+        if ("speechSynthesis" in window) {
+            window.speechSynthesis.cancel();
+        }
+
+        document.body.classList.remove("speaking");
+        statusMessage.textContent = "Voice replies disabled.";
+    }
+});
+
+function startVoiceInput() {
+    const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+        statusMessage.textContent =
+            "Voice input is not supported by this browser. Please try Google Chrome.";
+        return;
+    }
+
+    if (recognition) {
+        recognition.stop();
+    }
+
+    recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.onstart = function() {
+        micButton.classList.add("listening");
+        sideMicButton.classList.add("listening");
+        statusMessage.textContent = "Listening... Please speak now.";
+    };
+
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        userInput.value = transcript;
+        statusMessage.textContent = "Voice recognized.";
+        sendMessage(transcript);
+    };
+
+    recognition.onerror = function(event) {
+        statusMessage.textContent =
+            "Voice input error: " + event.error +
+            ". Please check microphone permission.";
+    };
+
+    recognition.onend = function() {
+        micButton.classList.remove("listening");
+        sideMicButton.classList.remove("listening");
+    };
+
+    try {
+        recognition.start();
+    } catch (error) {
+        statusMessage.textContent =
+            "Could not start the microphone. Please try again.";
+    }
+}
+
+micButton.addEventListener("click", startVoiceInput);
+sideMicButton.addEventListener("click", startVoiceInput);
+</script>
+
+</body>
+</html>
